@@ -1,4 +1,4 @@
-# Galactic Drop — Version V2.1 Neon
+# Galactic Drop — Version V2.2 Neon
 
 Application mobile PWA de DJ Kizomba Galactic.
 
@@ -29,4 +29,12 @@ Application mobile PWA de DJ Kizomba Galactic.
 - Les statistiques affichées sont locales à l’appareil.
 - Une communauté réelle, des comptes utilisateurs, le stockage cloud et les API sociales nécessiteront un backend dans une version suivante.
 
-Version technique : 2.1.0-neon
+Version technique : 2.2.0-neon
+
+
+## Liens Spotify intégrés en V2.2
+
+- Ma vie
+- Lovely — Original Mix
+- Voice Frequency
+- Profil artiste DJ Kizomba Galactic

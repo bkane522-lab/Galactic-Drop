@@ -1,17 +1,18 @@
 'use strict';
 
-const STORAGE_RELEASES = 'galactic-drop-releases-v3';
-const STORAGE_FAVORITES = 'galactic-drop-favorites-v3';
-const STORAGE_ANALYTICS = 'galactic-drop-analytics-v3';
-const STORAGE_ACTIVE = 'galactic-drop-active-v3';
-const APP_VERSION = '2.1.0-neon';
+const STORAGE_RELEASES = 'galactic-drop-releases-v4';
+const STORAGE_FAVORITES = 'galactic-drop-favorites-v4';
+const STORAGE_ANALYTICS = 'galactic-drop-analytics-v4';
+const STORAGE_ACTIVE = 'galactic-drop-active-v4';
+const APP_VERSION = '2.2.0-neon';
 
 const publicArtistLinks = {
-  spotify: 'https://open.spotify.com/artist/2G8ibLWy13X2kQYMzueiyV',
+  spotify: 'https://open.spotify.com/artist/5S7JjkYJrksNO8EVfUSBUl',
   apple: 'https://music.apple.com/us/artist/1003914907'
 };
 
 const archiveLinks = {
+  bamss2025: 'https://open.spotify.com/artist/2G8ibLWy13X2kQYMzueiyV',
   spotify2020: 'https://open.spotify.com/artist/4JZUArKBrDWvBWaLuUPYyq',
   spotify2015: 'https://open.spotify.com/artist/538XscJAEZopzl1B3xaglS'
 };
@@ -36,7 +37,17 @@ const defaultReleases = [
   {
     id: 'lovely', title: 'LOVELY', artist: 'DJ Kizomba Galactic', type: 'single', year: '2026', mood: 'Sensuel',
     description: 'Une fusion Kizomba chaude et immersive, pensée pour les danseurs et les vidéos courtes.', cover: 'assets/cover-lovely.svg', audio: '',
-    links: { spotify:'', apple:'', youtube:'', deezer:'', soundcloud:'', bandcamp:'', tiktok:'', instagram:'' }
+    links: { spotify:'https://open.spotify.com/track/14O3imAUWmx8ob6TdOWKng', apple:'', youtube:'', deezer:'', soundcloud:'', bandcamp:'', tiktok:'', instagram:'' }
+  },
+  {
+    id: 'ma-vie', title: 'MA VIE', artist: 'DJ Kizomba Galactic', type: 'single', year: '2026', mood: 'Univers Kizomba',
+    description: 'Titre officiel de DJ Kizomba Galactic disponible sur Spotify.', cover: 'assets/cover-ma-vie.svg', audio: '',
+    links: { spotify:'https://open.spotify.com/track/4yavyNpvlCe7zJHC6Vhgxl', apple:'', youtube:'', deezer:'', soundcloud:'', bandcamp:'', tiktok:'', instagram:'' }
+  },
+  {
+    id: 'voice-frequency', title: 'VOICE FREQUENCY', artist: 'DJ Kizomba Galactic', type: 'single', year: '2026', mood: 'Univers Kizomba',
+    description: 'Titre officiel de DJ Kizomba Galactic disponible sur Spotify.', cover: 'assets/cover-voice-frequency.svg', audio: '',
+    links: { spotify:'https://open.spotify.com/track/7geCEU7GAmAwdDUUeP40bc', apple:'', youtube:'', deezer:'', soundcloud:'', bandcamp:'', tiktok:'', instagram:'' }
   },
   {
     id: 'kiz-x-rayon-2', title: 'KIZ X RAYON 2', artist: 'DJ Kizomba Galactic', type: 'single', year: '2026', mood: 'Deep',
