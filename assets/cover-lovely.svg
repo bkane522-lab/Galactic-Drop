@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+ <defs><radialGradient id="a" cx="50%" cy="35%"><stop stop-color="#3c1638"/><stop offset=".46" stop-color="#15101b"/><stop offset="1" stop-color="#030403"/></radialGradient><linearGradient id="b"><stop stop-color="#ff6fd8"/><stop offset=".52" stop-color="#b2ff4b"/><stop offset="1" stop-color="#23ffd0"/></linearGradient><filter id="g"><feGaussianBlur stdDeviation="13" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+ <rect width="1000" height="1000" fill="url(#a)"/>
+ <g fill="none" stroke="url(#b)" filter="url(#g)" opacity=".8"><ellipse cx="500" cy="430" rx="300" ry="130" transform="rotate(-18 500 430)" stroke-width="4"/><ellipse cx="500" cy="430" rx="220" ry="290" transform="rotate(25 500 430)" stroke-width="3"/></g>
+ <circle cx="500" cy="410" r="165" fill="#071009" stroke="#9eff4e" stroke-opacity=".35" stroke-width="6"/>
+ <path d="M500 535C360 432 334 335 400 287c43-31 91-13 100 22 9-35 57-53 100-22 66 48 40 145-100 248Z" fill="none" stroke="url(#b)" stroke-width="18" filter="url(#g)"/>
+ <g fill="#fff"><circle cx="160" cy="155" r="3"/><circle cx="804" cy="188" r="3"/><circle cx="873" cy="512" r="2"/><circle cx="233" cy="612" r="2"/></g>
+ <text x="70" y="790" fill="#b8ff65" font-family="Arial" font-size="24" letter-spacing="8">DJ KIZOMBA GALACTIC</text><text x="66" y="910" fill="#fff" font-family="Arial" font-size="132" font-weight="800">LOVELY</text>
+</svg>

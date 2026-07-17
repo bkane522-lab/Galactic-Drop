@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+ <defs>
+  <radialGradient id="bg" cx="58%" cy="36%" r="72%"><stop offset="0" stop-color="#164b2b"/><stop offset=".35" stop-color="#071b10"/><stop offset="1" stop-color="#020503"/></radialGradient>
+  <radialGradient id="halo"><stop offset="0" stop-color="#d5ff9c" stop-opacity=".8"/><stop offset=".18" stop-color="#7cff4d" stop-opacity=".35"/><stop offset=".52" stop-color="#24f296" stop-opacity=".08"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+  <linearGradient id="coat" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#16251a"/><stop offset=".55" stop-color="#071009"/><stop offset="1" stop-color="#15291a"/></linearGradient>
+  <filter id="glow"><feGaussianBlur stdDeviation="11" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <pattern id="grid" width="45" height="45" patternUnits="userSpaceOnUse"><path d="M45 0H0v45" fill="none" stroke="#72ff5d" stroke-opacity=".055"/></pattern>
+ </defs>
+ <rect width="1000" height="1000" fill="url(#bg)"/>
+ <rect width="1000" height="1000" fill="url(#grid)"/>
+ <circle cx="590" cy="350" r="330" fill="url(#halo)"/>
+ <g fill="none" stroke="#8cff4f" stroke-opacity=".42" filter="url(#glow)">
+  <ellipse cx="590" cy="350" rx="285" ry="120" transform="rotate(-22 590 350)"/>
+  <ellipse cx="590" cy="350" rx="220" ry="92" transform="rotate(36 590 350)"/>
+ </g>
+ <g fill="#baff7c">
+  <circle cx="164" cy="166" r="3"/><circle cx="805" cy="134" r="4"/><circle cx="882" cy="393" r="2"/><circle cx="274" cy="320" r="2"/><circle cx="125" cy="525" r="3"/><circle cx="752" cy="590" r="2"/>
+ </g>
+ <path d="M295 930c26-190 93-318 211-380 24-13 49-22 76-27 18-4 41-4 58 0 124 27 226 161 260 407Z" fill="url(#coat)" stroke="#6cff52" stroke-opacity=".18" stroke-width="5"/>
+ <path d="M503 496c-22-32-33-68-28-104 5-43 32-86 74-105 45-20 99-14 130 21 26 29 31 72 20 110-11 39-36 79-74 95-40 18-91 15-122-17Z" fill="#101a12"/>
+ <path d="M480 392c8-69 60-124 128-126 54-2 101 34 117 83-26-13-48-28-65-50-15 34-54 61-99 70-29 6-56 12-81 23Z" fill="#050806"/>
+ <path d="M520 387c31-15 76-17 109-7l19 30c-31-7-65-7-96 1Z" fill="#050806" stroke="#6bff4f" stroke-opacity=".55" stroke-width="5"/>
+ <path d="M567 526c24 12 52 12 77-1l13 51-54 39-52-40Z" fill="#0a110c"/>
+ <path d="m550 576 53 39 54-39 78 71-65 82-67-69-65 69-64-82Z" fill="#111b13" stroke="#91ff59" stroke-opacity=".2" stroke-width="5"/>
+ <g opacity=".6" stroke="#8dff56" stroke-width="3" fill="none"><path d="M86 784c205-39 364-25 510 42"/><path d="M754 65c93 52 146 119 174 200"/></g>
+ <text x="74" y="800" fill="#99ff57" font-family="Arial,Helvetica,sans-serif" font-size="24" letter-spacing="8">DJ KIZOMBA GALACTIC</text>
+ <text x="72" y="870" fill="#f4fff2" font-family="Arial,Helvetica,sans-serif" font-size="68" font-weight="700">STARLIGHT</text>
+ <text x="72" y="935" fill="#f4fff2" font-family="Arial,Helvetica,sans-serif" font-size="68" font-weight="700">KIZOMBA</text>
+</svg>

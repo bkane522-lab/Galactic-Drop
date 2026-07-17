@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+ <defs><radialGradient id="a" cx="55%" cy="38%"><stop stop-color="#153745"/><stop offset=".42" stop-color="#071419"/><stop offset="1" stop-color="#020504"/></radialGradient><linearGradient id="b" x1="0" x2="1"><stop stop-color="#49fff1"/><stop offset=".5" stop-color="#9cff3e"/><stop offset="1" stop-color="#e2ff70"/></linearGradient><filter id="g"><feGaussianBlur stdDeviation="10" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+ <rect width="1000" height="1000" fill="url(#a)"/>
+ <g stroke="url(#b)" fill="none" filter="url(#g)"><path d="M81 609 389 195l-62 318 205-53-282 348 51-250Z" stroke-width="15"/><path d="m491 176 45 89 95 15-69 69 17 97-88-45-87 45 16-97-69-69 96-15Z" opacity=".55"/></g>
+ <g opacity=".25" stroke="#83ff59"><path d="M0 165h1000M0 310h1000M0 455h1000M0 600h1000"/><path d="M165 0v1000M310 0v1000M455 0v1000M600 0v1000M745 0v1000"/></g>
+ <text x="70" y="765" fill="#8cff5a" font-family="Arial" font-size="24" letter-spacing="8">DJ KIZOMBA GALACTIC</text><text x="66" y="865" fill="#fff" font-family="Arial" font-size="88" font-weight="800">KIZ X</text><text x="66" y="950" fill="#fff" font-family="Arial" font-size="88" font-weight="800">RAYON 2</text>
+</svg>
