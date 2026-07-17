@@ -1,8 +1,8 @@
-const CACHE = 'galactic-drop-neon-v1-0-0';
+const CACHE = 'galactic-drop-neon-v2-1-0';
 const ASSETS = [
   './', './index.html', './style.css', './app.js', './manifest.json',
-  './assets/icon-192.png', './assets/icon-512.png',
-  './assets/cover-starlight.svg', './assets/cover-lovely.svg', './assets/cover-rayon.svg',
+  './assets/icon-192.png', './assets/icon-512.png', './assets/logo-djkizomba-galactic.png',
+  './assets/cover-starlight-v2.png', './assets/cover-starlight.svg', './assets/cover-lovely.svg', './assets/cover-rayon.svg',
   './assets/cover-waka.svg', './assets/cover-level.svg', './assets/cover-default.svg'
 ];
 self.addEventListener('install', event => event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)).then(() => self.skipWaiting())));

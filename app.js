@@ -1,10 +1,20 @@
 'use strict';
 
-const STORAGE_RELEASES = 'galactic-drop-releases-v2';
-const STORAGE_FAVORITES = 'galactic-drop-favorites-v2';
-const STORAGE_ANALYTICS = 'galactic-drop-analytics-v2';
-const STORAGE_ACTIVE = 'galactic-drop-active-v2';
-const APP_VERSION = '1.0.0-neon';
+const STORAGE_RELEASES = 'galactic-drop-releases-v3';
+const STORAGE_FAVORITES = 'galactic-drop-favorites-v3';
+const STORAGE_ANALYTICS = 'galactic-drop-analytics-v3';
+const STORAGE_ACTIVE = 'galactic-drop-active-v3';
+const APP_VERSION = '2.1.0-neon';
+
+const publicArtistLinks = {
+  spotify: 'https://open.spotify.com/artist/2G8ibLWy13X2kQYMzueiyV',
+  apple: 'https://music.apple.com/us/artist/1003914907'
+};
+
+const archiveLinks = {
+  spotify2020: 'https://open.spotify.com/artist/4JZUArKBrDWvBWaLuUPYyq',
+  spotify2015: 'https://open.spotify.com/artist/538XscJAEZopzl1B3xaglS'
+};
 
 const platforms = {
   spotify: { label: 'Spotify', icon: 'SP' },
@@ -20,7 +30,7 @@ const platforms = {
 const defaultReleases = [
   {
     id: 'starlight-kizomba', title: 'STARLIGHT KIZOMBA', artist: 'DJ Kizomba Galactic', type: 'single', year: '2026', mood: 'Futuriste',
-    description: 'Une Kizomba futuriste portée par une énergie profonde, élégante et cosmique.', cover: 'assets/cover-starlight.svg', audio: '',
+    description: 'Une Kizomba futuriste portée par une énergie profonde, élégante et cosmique.', cover: 'assets/cover-starlight-v2.png', audio: '',
     links: { spotify:'', apple:'', youtube:'', deezer:'', soundcloud:'', bandcamp:'', tiktok:'', instagram:'' }
   },
   {
@@ -175,11 +185,14 @@ function renderPlatforms() {
   const grid = $('#platformGrid');
   grid.innerHTML = '';
   Object.entries(platforms).slice(0, 6).forEach(([key, platform]) => {
-    const url = validUrl(activeRelease.links?.[key]);
+    const releaseUrl = validUrl(activeRelease.links?.[key]);
+    const publicUrl = validUrl(publicArtistLinks[key] || '');
+    const url = releaseUrl || publicUrl;
+    const status = releaseUrl ? 'Ouvrir la sortie' : publicUrl ? 'Profil artiste' : 'À connecter';
     const button = document.createElement('button');
     button.type = 'button';
     button.className = `platform-card${url ? ' connected' : ''}`;
-    button.innerHTML = `<span class="platform-icon">${platform.icon}</span><span><strong>${platform.label}</strong><small>${url ? 'Ouvrir' : 'À connecter'}</small></span>`;
+    button.innerHTML = `<span class="platform-icon">${platform.icon}</span><span><strong>${platform.label}</strong><small>${status}</small></span>`;
     button.addEventListener('click', () => url ? openPlatform(key, url) : openEditor(activeRelease));
     grid.append(button);
   });
@@ -400,6 +413,13 @@ function bindEvents() {
   $('#openAnalytics').addEventListener('click', () => { renderAnalytics(); $('#analyticsModal').showModal(); });
   $('#openDataManager').addEventListener('click', () => $('#dataModal').showModal());
   $('#copyBookingButton').addEventListener('click', () => copyText('@DJKizombaGalactic', 'Compte Instagram copié'));
+  $('#toggleArchivesButton').addEventListener('click', () => {
+    const section = $('#musicArchives');
+    const isOpen = !section.hidden;
+    section.hidden = isOpen;
+    $('#toggleArchivesButton').setAttribute('aria-expanded', String(!isOpen));
+    if (!isOpen) section.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
   $('#aboutAppButton').addEventListener('click', () => $('#aboutModal').showModal());
   $$('[data-close]').forEach(button => button.addEventListener('click', () => document.getElementById(button.dataset.close).close()));
   $$('.promo-tab').forEach(button => button.addEventListener('click', () => {

@@ -1,4 +1,4 @@
-# Galactic Drop — Première version Neon
+# Galactic Drop — Version V2.1 Neon
 
 Application mobile PWA de DJ Kizomba Galactic.
 
@@ -6,7 +6,7 @@ Application mobile PWA de DJ Kizomba Galactic.
 
 - Accueil premium avec dernier drop
 - Catalogue filtrable et favoris
-- Liens Spotify, Apple Music, YouTube, Deezer, SoundCloud, Bandcamp, TikTok et Instagram
+- Liens publics Spotify et Apple Music intégrés, plus connexions YouTube, Deezer, SoundCloud, Bandcamp, TikTok et Instagram
 - Lecteur d’extrait audio par URL
 - Partage natif du téléphone
 - Studio local pour ajouter, modifier et supprimer les sorties
@@ -14,6 +14,7 @@ Application mobile PWA de DJ Kizomba Galactic.
 - Smart Link par sortie
 - Statistiques locales de clics, lectures et partages
 - Export/import JSON du catalogue
+- Archives musicales Spotify 2020 et 2015
 - Installation PWA et fonctionnement hors connexion pour l’interface
 
 ## Publication
@@ -22,10 +23,10 @@ Application mobile PWA de DJ Kizomba Galactic.
 2. Importer le dossier complet sur Vercel, Netlify ou GitHub Pages.
 3. Ouvrir l’application, aller dans **Studio**, puis remplacer les liens de démonstration par les vrais liens de diffusion.
 
-## Limites de cette première version
+## Limites de cette version
 
 - La distribution officielle vers les plateformes reste gérée par un distributeur ou un label.
 - Les statistiques affichées sont locales à l’appareil.
 - Une communauté réelle, des comptes utilisateurs, le stockage cloud et les API sociales nécessiteront un backend dans une version suivante.
 
-Version technique : 1.0.0-neon
+Version technique : 2.1.0-neon
