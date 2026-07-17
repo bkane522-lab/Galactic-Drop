@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+ <defs><linearGradient id="a" x1="0" y1="1"><stop stop-color="#020302"/><stop offset=".58" stop-color="#07170b"/><stop offset="1" stop-color="#183811"/></linearGradient><linearGradient id="b"><stop stop-color="#4dffab"/><stop offset="1" stop-color="#c6ff4b"/></linearGradient><filter id="g"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+ <rect width="1000" height="1000" fill="url(#a)"/>
+ <g fill="url(#b)" filter="url(#g)"><path d="M155 635h95V485h95v150h95V350h95v285h95V235h95v400h95v90H155Z" opacity=".85"/><path d="m475 210 75-130 75 130h-45v95h-60v-95Z"/></g>
+ <g fill="#cfff66" opacity=".35"><circle cx="140" cy="190" r="4"/><circle cx="822" cy="121" r="3"/><circle cx="743" cy="502" r="3"/></g>
+ <text x="70" y="775" fill="#aaff4e" font-family="Arial" font-size="24" letter-spacing="8">DJ KIZOMBA GALACTIC</text><text x="62" y="920" fill="#fff" font-family="Arial" font-size="128" font-weight="800">LEVEL UP</text>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+ <defs><radialGradient id="a"><stop stop-color="#3b3110"/><stop offset=".45" stop-color="#161207"/><stop offset="1" stop-color="#020402"/></radialGradient><linearGradient id="b"><stop stop-color="#f7d94c"/><stop offset=".5" stop-color="#a4ff3f"/><stop offset="1" stop-color="#43ffb0"/></linearGradient><filter id="g"><feGaussianBlur stdDeviation="9" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+ <rect width="1000" height="1000" fill="url(#a)"/>
+ <g fill="none" stroke="url(#b)" stroke-width="12" filter="url(#g)"><circle cx="500" cy="390" r="230"/><circle cx="500" cy="390" r="145"/><path d="M500 80v620M190 390h620M280 170l440 440M720 170 280 610"/></g>
+ <circle cx="500" cy="390" r="84" fill="#050805" stroke="#d6ff55" stroke-width="10"/>
+ <path d="M464 330v120l110-60Z" fill="#b7ff47"/>
+ <text x="70" y="770" fill="#b9ff48" font-family="Arial" font-size="24" letter-spacing="8">DJ KIZOMBA GALACTIC</text><text x="64" y="875" fill="#fff" font-family="Arial" font-size="100" font-weight="800">WAKA</text><text x="64" y="960" fill="#fff" font-family="Arial" font-size="100" font-weight="800">POKA</text>
+</svg>
