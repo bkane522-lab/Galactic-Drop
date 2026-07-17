@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+  <defs>
+    <radialGradient id="g" cx="50%" cy="42%" r="72%"><stop offset="0" stop-color="#154f30"/><stop offset=".45" stop-color="#06140c"/><stop offset="1" stop-color="#020402"/></radialGradient>
+    <linearGradient id="gold" x1="0" x2="1"><stop stop-color="#945b08"/><stop offset=".48" stop-color="#ffe69b"/><stop offset="1" stop-color="#8f5908"/></linearGradient>
+    <filter id="gl"><feGaussianBlur stdDeviation="13" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1000" height="1000" fill="url(#g)"/>
+  <g stroke="#8cff4f" stroke-width="14" stroke-linecap="round" filter="url(#gl)">
+    <path d="M170 500v-60M225 500v-130M280 500v-220M335 500v-110M390 500v-300M445 500v-180M500 500v-350M555 500v-180M610 500v-300M665 500v-110M720 500v-220M775 500v-130M830 500v-60"/>
+  </g>
+  <circle cx="500" cy="500" r="270" fill="none" stroke="url(#gold)" stroke-opacity=".65" stroke-width="8"/>
+  <ellipse cx="500" cy="500" rx="350" ry="118" fill="none" stroke="#8cff4f" stroke-opacity=".24" stroke-width="5" transform="rotate(20 500 500)"/>
+  <text x="500" y="795" text-anchor="middle" fill="url(#gold)" font-family="Arial,sans-serif" font-size="78" font-weight="800">VOICE</text>
+  <text x="500" y="875" text-anchor="middle" fill="#f6fff2" font-family="Arial,sans-serif" font-size="72" font-weight="800">FREQUENCY</text>
+  <text x="500" y="925" text-anchor="middle" fill="#9cff3e" font-family="Arial,sans-serif" font-size="24" letter-spacing="7">DJ KIZOMBA GALACTIC</text>
+</svg>
