@@ -1,10 +1,10 @@
 'use strict';
 
-const STORAGE_RELEASES = 'galactic-drop-releases-v4';
-const STORAGE_FAVORITES = 'galactic-drop-favorites-v4';
-const STORAGE_ANALYTICS = 'galactic-drop-analytics-v4';
-const STORAGE_ACTIVE = 'galactic-drop-active-v4';
-const APP_VERSION = '2.2.0-neon';
+const STORAGE_RELEASES = 'galactic-drop-releases-v6';
+const STORAGE_FAVORITES = 'galactic-drop-favorites-v6';
+const STORAGE_ANALYTICS = 'galactic-drop-analytics-v6';
+const STORAGE_ACTIVE = 'galactic-drop-active-v6';
+const APP_VERSION = '2.4.0-neon';
 
 const publicArtistLinks = {
   spotify: 'https://open.spotify.com/artist/5S7JjkYJrksNO8EVfUSBUl',
@@ -29,6 +29,11 @@ const platforms = {
 };
 
 const defaultReleases = [
+  {
+    id: 'only-jha-knows', title: 'ONLY JHA KNOWS', artist: 'DJ Kizomba Galactic', type: 'single', year: '2026', mood: 'Kizomba cinématique',
+    description: 'Une Kizomba émotionnelle et cinématique, entre attraction, mystère et horizon galactique.', cover: 'assets/cover-only-jha-knows.png', audio: 'assets/only-jha-knows.mp3',
+    links: { spotify:'', apple:'', youtube:'', deezer:'', soundcloud:'', bandcamp:'', tiktok:'', instagram:'' }
+  },
   {
     id: 'starlight-kizomba', title: 'STARLIGHT KIZOMBA', artist: 'DJ Kizomba Galactic', type: 'single', year: '2026', mood: 'Futuriste',
     description: 'Une Kizomba futuriste portée par une énergie profonde, élégante et cosmique.', cover: 'assets/cover-starlight-v2.png', audio: '',
@@ -96,12 +101,31 @@ function escapeHtml(value = '') {
   return String(value).replace(/[&<>'"]/g, char => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', "'":'&#039;', '"':'&quot;' }[char]));
 }
 function validUrl(value = '') { return /^https?:\/\//i.test(value.trim()) ? value.trim() : ''; }
+function mediaUrl(value = '') {
+  const cleaned = String(value || '').trim();
+  return validUrl(cleaned) || (/^(?:\.\/)?assets\//i.test(cleaned) ? cleaned : '');
+}
 function slugify(value = '') { return value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''); }
 function formatTime(seconds) {
   if (!Number.isFinite(seconds)) return '0:00';
   return `${Math.floor(seconds / 60)}:${String(Math.floor(seconds % 60)).padStart(2, '0')}`;
 }
 function typeLabel(type) { return type === 'album' ? 'ALBUM / EP' : type === 'mix' ? 'MIX' : 'SINGLE'; }
+function releasePrimaryLink(release = activeRelease) {
+  const order = ['spotify','apple','youtube','deezer','soundcloud','bandcamp','tiktok','instagram'];
+  for (const key of order) {
+    const releaseUrl = validUrl(release?.links?.[key] || '');
+    if (releaseUrl) return { key, url: releaseUrl, exact: true };
+  }
+  for (const key of order) {
+    const artistUrl = validUrl(publicArtistLinks[key] || '');
+    if (artistUrl) return { key, url: artistUrl, exact: false };
+  }
+  return null;
+}
+function platformActionLabel(key) {
+  return key === 'spotify' ? 'SPOTIFY' : key === 'apple' ? 'APPLE MUSIC' : key === 'youtube' ? 'YOUTUBE' : platforms[key]?.label?.toUpperCase() || 'ÉCOUTER';
+}
 function appUrl(release = activeRelease) {
   const base = location.href.split('#')[0].split('?')[0];
   return `${base}?drop=${encodeURIComponent(release.id)}`;
@@ -140,22 +164,39 @@ function routeTo(route) {
 
 function renderHero() {
   if (!activeRelease) return;
-  $('#heroCover').src = activeRelease.cover || 'assets/cover-default.svg';
-  $('#heroCover').alt = `Pochette de ${activeRelease.title}`;
+  const heroImage = $('#heroCover');
+  heroImage.onerror = () => { heroImage.onerror = null; heroImage.src = 'assets/cover-default.svg'; };
+  heroImage.src = activeRelease.cover || 'assets/cover-default.svg';
+  heroImage.alt = `Pochette de ${activeRelease.title}`;
   $('#heroType').textContent = `NOUVEAU ${typeLabel(activeRelease.type)}`;
   $('#heroTitle').textContent = activeRelease.title;
   $('#heroArtist').textContent = activeRelease.artist || 'DJ Kizomba Galactic';
   $('#heroDescription').textContent = activeRelease.description || 'Nouvelle sortie de DJ Kizomba Galactic.';
   $('#favoriteButton').classList.toggle('active', favorites.has(activeRelease.id));
   $('#favoriteButton').setAttribute('aria-label', favorites.has(activeRelease.id) ? 'Retirer des favoris' : 'Ajouter aux favoris');
+
   const audio = $('#audioPlayer');
   audio.pause();
-  const audioUrl = validUrl(activeRelease.audio);
-  if (audioUrl) audio.src = audioUrl;
-  else { audio.removeAttribute('src'); audio.load(); }
+  const audioUrl = mediaUrl(activeRelease.audio);
+  const primary = releasePrimaryLink(activeRelease);
+  const audioRow = $('.audio-row');
+  if (audioUrl) {
+    audio.src = audioUrl;
+    audioRow.hidden = false;
+    $('#heroAvailability').textContent = 'EXTRAIT AUDIO DISPONIBLE';
+    $('#heroAvailability').classList.add('available');
+  } else {
+    audio.removeAttribute('src');
+    audio.load();
+    audioRow.hidden = true;
+    const platformName = primary ? platforms[primary.key]?.label : '';
+    $('#heroAvailability').textContent = primary ? `${primary.exact ? 'SORTIE' : 'PROFIL'} DISPONIBLE SUR ${platformName.toUpperCase()}` : 'LIENS À CONNECTER';
+    $('#heroAvailability').classList.toggle('available', Boolean(primary));
+  }
+
   $('#heroPlay').classList.remove('playing');
   $('#heroPlay').innerHTML = playIcon();
-  $('#listenMainButton').innerHTML = `${playIcon()} ÉCOUTER`;
+  $('#listenMainButton').innerHTML = audioUrl ? `${playIcon()} ÉCOUTER` : primary ? `${playIcon()} OUVRIR ${platformActionLabel(primary.key)}` : `${playIcon()} CONNECTER`;
   $('#audioProgress').value = 0;
   $('#currentTime').textContent = '0:00';
   $('#duration').textContent = '0:00';
@@ -172,9 +213,9 @@ function heartIcon() { return '<svg viewBox="0 0 24 24" aria-hidden="true"><path
 function toggleAudio() {
   const audio = $('#audioPlayer');
   if (!audio.getAttribute('src')) {
-    const firstLink = Object.entries(activeRelease.links || {}).find(([, value]) => validUrl(value));
-    if (firstLink) openPlatform(firstLink[0], firstLink[1]);
-    else toast('Ajoute un extrait audio ou un lien d’écoute dans le Studio');
+    const primary = releasePrimaryLink(activeRelease);
+    if (primary) openPlatform(primary.key, primary.url);
+    else openEditor(activeRelease);
     return;
   }
   if (audio.paused) {
@@ -199,11 +240,13 @@ function renderPlatforms() {
     const releaseUrl = validUrl(activeRelease.links?.[key]);
     const publicUrl = validUrl(publicArtistLinks[key] || '');
     const url = releaseUrl || publicUrl;
-    const status = releaseUrl ? 'Ouvrir la sortie' : publicUrl ? 'Profil artiste' : 'À connecter';
+    const status = releaseUrl ? 'Sortie disponible' : publicUrl ? 'Profil artiste' : 'À connecter';
     const button = document.createElement('button');
     button.type = 'button';
+    button.dataset.platform = key;
     button.className = `platform-card${url ? ' connected' : ''}`;
-    button.innerHTML = `<span class="platform-icon">${platform.icon}</span><span><strong>${platform.label}</strong><small>${status}</small></span>`;
+    button.setAttribute('aria-label', url ? `Ouvrir ${platform.label}` : `Connecter ${platform.label}`);
+    button.innerHTML = `<span class="platform-top"><span class="platform-icon">${platform.icon}</span>${url ? '<i class="platform-dot" aria-hidden="true"></i>' : ''}</span><span class="platform-copy"><strong>${platform.label}</strong><small>${status}</small></span>`;
     button.addEventListener('click', () => url ? openPlatform(key, url) : openEditor(activeRelease));
     grid.append(button);
   });
@@ -219,7 +262,7 @@ function renderHomeTracks() {
   releases.filter(item => item.id !== activeRelease.id).slice(0, 3).forEach(release => {
     const button = document.createElement('button');
     button.type = 'button'; button.className = 'mini-track';
-    button.innerHTML = `<img src="${escapeHtml(release.cover || 'assets/cover-default.svg')}" alt=""><span><strong>${escapeHtml(release.title)}</strong><small>${escapeHtml(release.mood || typeLabel(release.type))} · ${escapeHtml(release.year || '')}</small></span><span class="track-play">${playIcon()}</span>`;
+    button.innerHTML = `<img src="${escapeHtml(release.cover || 'assets/cover-default.svg')}" alt="" onerror="this.onerror=null;this.src='assets/cover-default.svg'"><span><strong>${escapeHtml(release.title)}</strong><small>${escapeHtml(release.mood || typeLabel(release.type))} · ${escapeHtml(release.year || '')}</small></span><span class="track-play">${playIcon()}</span>`;
     button.addEventListener('click', () => selectRelease(release, true));
     container.append(button);
   });
@@ -243,7 +286,7 @@ function renderExplore() {
   const grid = $('#releaseGrid'); grid.innerHTML = '';
   filtered.forEach(release => {
     const card = document.createElement('article'); card.className = 'release-card';
-    card.innerHTML = `<img src="${escapeHtml(release.cover || 'assets/cover-default.svg')}" alt="Pochette de ${escapeHtml(release.title)}"><button type="button" class="card-favorite ${favorites.has(release.id) ? 'active' : ''}" aria-label="Favori">${heartIcon()}</button><div class="release-card-body"><span class="release-type">${typeLabel(release.type)}</span><h3>${escapeHtml(release.title)}</h3><p>${escapeHtml(release.mood || release.artist)}</p></div>`;
+    card.innerHTML = `<img src="${escapeHtml(release.cover || 'assets/cover-default.svg')}" alt="Pochette de ${escapeHtml(release.title)}" onerror="this.onerror=null;this.src='assets/cover-default.svg'"><button type="button" class="card-favorite ${favorites.has(release.id) ? 'active' : ''}" aria-label="Favori">${heartIcon()}</button><div class="release-card-body"><span class="release-type">${typeLabel(release.type)}</span><h3>${escapeHtml(release.title)}</h3><p>${escapeHtml(release.mood || release.artist)}</p></div>`;
     card.addEventListener('click', event => {
       if (event.target.closest('.card-favorite')) return;
       selectRelease(release, true);
@@ -266,7 +309,7 @@ function renderStudioList() {
   const container = $('#studioReleaseList'); container.innerHTML = '';
   releases.forEach(release => {
     const row = document.createElement('article'); row.className = 'studio-release';
-    row.innerHTML = `<img src="${escapeHtml(release.cover || 'assets/cover-default.svg')}" alt=""><span><strong>${escapeHtml(release.title)}</strong><small>${typeLabel(release.type)} · ${escapeHtml(release.year || '')}</small></span><span class="release-menu"><button type="button" aria-label="Modifier">${editIcon()}</button><button type="button" class="danger" aria-label="Supprimer">${trashIcon()}</button></span>`;
+    row.innerHTML = `<img src="${escapeHtml(release.cover || 'assets/cover-default.svg')}" alt="" onerror="this.onerror=null;this.src='assets/cover-default.svg'"><span><strong>${escapeHtml(release.title)}</strong><small>${typeLabel(release.type)} · ${escapeHtml(release.year || '')}</small></span><span class="release-menu"><button type="button" aria-label="Modifier">${editIcon()}</button><button type="button" class="danger" aria-label="Supprimer">${trashIcon()}</button></span>`;
     const [editButton, deleteButton] = $$('.release-menu button', row);
     editButton.addEventListener('click', () => openEditor(release));
     deleteButton.addEventListener('click', () => deleteRelease(release));

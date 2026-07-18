@@ -1,40 +1,43 @@
-# Galactic Drop — Version V2.2 Neon
+# Galactic Drop — Version V2.3 Neon
 
 Application mobile PWA de DJ Kizomba Galactic.
 
-## Contenu
+## Améliorations V2.3
 
-- Accueil premium avec dernier drop
+- Carte principale optimisée pour le mobile
+- Bouton d’écoute intelligent : extrait audio, lien exact du morceau ou profil artiste
+- Statut clair de disponibilité sous chaque sortie
+- Cartes Spotify, Apple Music, YouTube, Deezer, SoundCloud et Bandcamp mieux séparées
+- Couleurs propres à chaque plateforme et indicateur de connexion
+- Correction des textes collés comme « SpotifyÀ connecter »
+- Images de secours automatiques lorsqu’une pochette ne charge pas
+- Barre de navigation inférieure plus compacte
+- Cache PWA renouvelé
+
+## Fonctions disponibles
+
 - Catalogue filtrable et favoris
-- Liens publics Spotify et Apple Music intégrés, plus connexions YouTube, Deezer, SoundCloud, Bandcamp, TikTok et Instagram
-- Lecteur d’extrait audio par URL
+- Liens publics Spotify et Apple Music
+- Liens Spotify exacts pour Ma vie, Lovely et Voice Frequency
 - Partage natif du téléphone
 - Studio local pour ajouter, modifier et supprimer les sorties
-- Générateur de légende, hashtags et checklist de lancement
+- Générateur de légendes, hashtags et checklist de lancement
 - Smart Link par sortie
-- Statistiques locales de clics, lectures et partages
-- Export/import JSON du catalogue
-- Archives musicales Spotify 2020 et 2015
+- Statistiques locales
+- Export et import JSON du catalogue
+- Archives des anciens profils Spotify
 - Installation PWA et fonctionnement hors connexion pour l’interface
 
 ## Publication
 
 1. Décompresser le ZIP.
 2. Importer le dossier complet sur Vercel, Netlify ou GitHub Pages.
-3. Ouvrir l’application, aller dans **Studio**, puis remplacer les liens de démonstration par les vrais liens de diffusion.
+3. Ouvrir l’application et ajouter les autres liens exacts depuis **Studio**.
 
-## Limites de cette version
+## Limites
 
-- La distribution officielle vers les plateformes reste gérée par un distributeur ou un label.
+- La distribution officielle reste gérée par le label ou le distributeur musical.
 - Les statistiques affichées sont locales à l’appareil.
-- Une communauté réelle, des comptes utilisateurs, le stockage cloud et les API sociales nécessiteront un backend dans une version suivante.
+- Les comptes utilisateurs, le stockage cloud et les API sociales nécessitent un backend.
 
-Version technique : 2.2.0-neon
-
-
-## Liens Spotify intégrés en V2.2
-
-- Ma vie
-- Lovely — Original Mix
-- Voice Frequency
-- Profil artiste DJ Kizomba Galactic
+Version technique : 2.4.0-neon
