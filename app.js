@@ -1,10 +1,10 @@
 'use strict';
 
-const STORAGE_RELEASES = 'galactic-drop-releases-v6';
-const STORAGE_FAVORITES = 'galactic-drop-favorites-v6';
-const STORAGE_ANALYTICS = 'galactic-drop-analytics-v6';
-const STORAGE_ACTIVE = 'galactic-drop-active-v6';
-const APP_VERSION = '2.4.0-neon';
+const STORAGE_RELEASES = 'galactic-drop-releases-v7';
+const STORAGE_FAVORITES = 'galactic-drop-favorites-v7';
+const STORAGE_ANALYTICS = 'galactic-drop-analytics-v7';
+const STORAGE_ACTIVE = 'galactic-drop-active-v7';
+const APP_VERSION = '2.4.1-audio-fix';
 
 const publicArtistLinks = {
   spotify: 'https://open.spotify.com/artist/5S7JjkYJrksNO8EVfUSBUl',
@@ -31,7 +31,7 @@ const platforms = {
 const defaultReleases = [
   {
     id: 'only-jha-knows', title: 'ONLY JHA KNOWS', artist: 'DJ Kizomba Galactic', type: 'single', year: '2026', mood: 'Kizomba cinématique',
-    description: 'Une Kizomba émotionnelle et cinématique, entre attraction, mystère et horizon galactique.', cover: 'assets/cover-only-jha-knows.png', audio: 'assets/only-jha-knows.mp3',
+    description: 'Une Kizomba émotionnelle et cinématique, entre attraction, mystère et horizon galactique.', cover: 'assets/cover-only-jha-knows.png', audio: 'assets/only-jha-knows-v2.mp3',
     links: { spotify:'', apple:'', youtube:'', deezer:'', soundcloud:'', bandcamp:'', tiktok:'', instagram:'' }
   },
   {
@@ -181,7 +181,8 @@ function renderHero() {
   const primary = releasePrimaryLink(activeRelease);
   const audioRow = $('.audio-row');
   if (audioUrl) {
-    audio.src = audioUrl;
+    audio.src = new URL(audioUrl, document.baseURI).href;
+    audio.load();
     audioRow.hidden = false;
     $('#heroAvailability').textContent = 'EXTRAIT AUDIO DISPONIBLE';
     $('#heroAvailability').classList.add('available');
@@ -219,12 +220,16 @@ function toggleAudio() {
     return;
   }
   if (audio.paused) {
-    audio.play().then(() => {
+    const startPlayback = () => audio.play().then(() => {
       $('#heroPlay').classList.add('playing');
       $('#heroPlay').innerHTML = pauseIcon();
       $('#listenMainButton').innerHTML = `${pauseIcon()} PAUSE`;
       incrementMetric('plays');
-    }).catch(() => toast('Impossible de lire cet extrait'));
+    });
+    startPlayback().catch(() => {
+      audio.load();
+      startPlayback().catch(() => toast('Lecture impossible. Recharge la page puis réessaie.'));
+    });
   } else {
     audio.pause();
     $('#heroPlay').classList.remove('playing');
@@ -490,6 +495,12 @@ function bindEvents() {
   $('#resetCatalogueButton').addEventListener('click', resetCatalogue);
   const audio = $('#audioPlayer');
   audio.addEventListener('loadedmetadata', () => $('#duration').textContent = formatTime(audio.duration));
+  audio.addEventListener('canplay', () => $('#heroAvailability').classList.add('available'));
+  audio.addEventListener('error', () => {
+    $('#heroPlay').classList.remove('playing');
+    $('#heroPlay').innerHTML = playIcon();
+    $('#listenMainButton').innerHTML = `${playIcon()} RÉESSAYER`;
+  });
   audio.addEventListener('timeupdate', () => {
     $('#currentTime').textContent = formatTime(audio.currentTime);
     $('#audioProgress').value = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;

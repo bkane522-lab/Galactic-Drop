@@ -41,3 +41,11 @@ Application mobile PWA de DJ Kizomba Galactic.
 - Les comptes utilisateurs, le stockage cloud et les API sociales nécessitent un backend.
 
 Version technique : 2.4.0-neon
+
+
+## Correctif 2.4.1
+
+- lecture MP3 mobile corrigée ;
+- extrait réencodé en MP3 44,1 kHz / 192 kb/s ;
+- les requêtes audio partielles ne sont plus bloquées par le service worker ;
+- en-têtes Vercel explicites pour les fichiers MP3.
